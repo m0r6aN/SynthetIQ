@@ -1,0 +1,21 @@
+// APPLYING THIS POLICY IN PRODUCTION BLOB STORAGE WILL DELETE ALL CONVERSATIONS WITH THE PREFIX AFTER 30 DAYS
+{
+  "rules": [
+    {
+      "enabled": true,
+      "name": "DeleteConversationsAfter30Days",
+      "type": "Lifecycle",
+      "definition": {
+        "filters": {
+          "blobTypes": [ "blockBlob" ],
+          "prefixMatch": [ "openaiconversations/" ]
+        },
+        "actions": {
+          "baseBlob": {
+            "delete": { "daysAfterModificationGreaterThan": 30 }
+          }
+        }
+      }
+    }
+  ]
+}
