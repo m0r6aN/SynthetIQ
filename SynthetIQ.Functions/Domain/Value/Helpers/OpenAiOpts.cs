@@ -1,4 +1,4 @@
-﻿namespace SynthetIQ.Functions.Domain.Value
+﻿namespace SynthetIQ.Functions.Domain.Value.Helpers
 {
     // Use the Options pattern with dependency injection for managing configurations and settings
     public class OpenAiOpts

@@ -12,6 +12,7 @@ global using System.Collections.Generic;
 global using System.Diagnostics;
 global using System.IO;
 global using System.Linq;
+global using System.Net.Http.Headers;
 global using System.Net.Http;
 global using System.Net;
 global using System.Text.Json.Serialization;
@@ -59,6 +60,7 @@ global using SynthetIQ.Utility.Helpers;
 global using SynthetIQ.Functions.Domain.Service;
 global using SynthetIQ.Functions.Domain.Value.Shared;
 global using SynthetIQ.Functions.Domain.Value.DTO;
+global using SynthetIQ.Functions.Domain.Value.Helpers;
 
 //********************************
 // ALIASES (FOR CLARITY)

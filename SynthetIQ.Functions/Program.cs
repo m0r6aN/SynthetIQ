@@ -31,11 +31,11 @@ namespace SynthetIQ.Function
                        {
                            return new OpenAIService(new OpenAiOptions
                            {
-                               ApiKey = "",
+                               ApiKey = "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",
                                ApiVersion = "v1",
                                BaseDomain = "https://api.openai.com",
                                ProviderType = ProviderType.OpenAi,
-                               Organization = ""
+                               Organization = "org-3puba41sPvY7cGvHOxHrDuXE"
                            });
                        });
 

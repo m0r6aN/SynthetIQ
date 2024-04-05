@@ -10,9 +10,6 @@
 // ***********************************************************************
 namespace SynthetIQ.Utility.Helpers
 {
-    using System.Linq;
-    using System.Net.Http.Headers;
-
     /// <summary>
     /// Class HttpHelpers.
     /// </summary>
@@ -62,7 +59,7 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpHelpers"/> class.
         /// </summary>
-        /// <param name="baseUrl">The base URL.</param>
+        /// <param name="baseUrl"> The base URL. </param>
         public HttpHelpers(string baseUrl)
         {
             BaseUrl = baseUrl;
@@ -71,8 +68,8 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpHelpers"/> class.
         /// </summary>
-        /// <param name="baseUrl">  The base URL.</param>
-        /// <param name="accessKvP">The access kv p.</param>
+        /// <param name="baseUrl">   The base URL. </param>
+        /// <param name="accessKvP"> The access kv p. </param>
         public HttpHelpers(string baseUrl, Dictionary<string, string> accessKvP)
         {
             BaseUrl = baseUrl;
@@ -82,9 +79,9 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// Creates a HttpContent instance
         /// </summary>
-        /// <param name="content">          The content.</param>
-        /// <param name="additionalHeaders">The additional Headers.</param>
-        /// <returns>HttpContent.</returns>
+        /// <param name="content">           The content. </param>
+        /// <param name="additionalHeaders"> The additional Headers. </param>
+        /// <returns> HttpContent. </returns>
         public HttpContent CreateHttpContent(object content, Dictionary<string, string>? additionalHeaders = null)
         {
             HttpContent httpContent = new StringContent(content.ToString() ?? string.Empty);
@@ -105,9 +102,9 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// Returns a URL as a string
         /// </summary>
-        /// <param name="route">The route.</param>
-        /// <param name="kvPs"> The kv ps.</param>
-        /// <returns>System.String.</returns>
+        /// <param name="route"> The route. </param>
+        /// <param name="kvPs">  The kv ps. </param>
+        /// <returns> System.String. </returns>
         public string BuildHttpGetUrl(string route, Dictionary<string, string> kvPs)
         {
             var sb = new StringBuilder($"{BaseUrl}/{route}");
@@ -128,9 +125,9 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// Returns a Uri
         /// </summary>
-        /// <param name="route">The route.</param>
-        /// <param name="kvPs"> The kv ps.</param>
-        /// <returns>Uri.</returns>
+        /// <param name="route"> The route. </param>
+        /// <param name="kvPs">  The kv ps. </param>
+        /// <returns> Uri. </returns>
         public Uri BuildHttpGetUri(string route, Dictionary<string, string> kvPs)
         {
             var sb = new StringBuilder($"{BaseUrl}/{route}");
@@ -151,8 +148,8 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// Builds the HTTP post put URI.
         /// </summary>
-        /// <param name="route">The route.</param>
-        /// <returns>Uri.</returns>
+        /// <param name="route"> The route. </param>
+        /// <returns> Uri. </returns>
         public Uri BuildHttpPostPutUri(string route)
         {
             var sb = new StringBuilder($"{BaseUrl}/{route}");
@@ -165,8 +162,8 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// Builds the query string.
         /// </summary>
-        /// <param name="keyValuePairs">The key value pairs.</param>
-        /// <returns>System.String.</returns>
+        /// <param name="keyValuePairs"> The key value pairs. </param>
+        /// <returns> System.String. </returns>
         protected string BuildQueryString(IDictionary<string, string> keyValuePairs)
         {
             StringBuilder sb = new StringBuilder("");
@@ -182,6 +179,31 @@ namespace SynthetIQ.Utility.Helpers
             sb.Clear();
 
             return qs;
+        }
+
+        /// <summary>
+        /// Creates the json HTTP content.
+        /// </summary>
+        /// <param name="content">           </param>
+        /// <param name="additionalHeaders"> </param>
+        /// <returns> </returns>
+        public HttpContent CreateJsonHttpContent(object content, Dictionary<string, string>? additionalHeaders = null)
+        {
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+            if (_accessKvP != null && _accessKvP.Any())
+            {
+                jsonContent.Headers.Add(_accessKvP.Keys.First(), _accessKvP.Values.First());
+            }
+
+            if (additionalHeaders != null)
+            {
+                foreach (var header in additionalHeaders)
+                {
+                    jsonContent.Headers.Add(header.Key, header.Value);
+                }
+            }
+
+            return jsonContent;
         }
     }
 }
