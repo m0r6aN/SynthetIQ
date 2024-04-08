@@ -98,12 +98,14 @@ public class Capability
 ```
 
 # Capabilities
-## Definition: Capabilities are specific functions or areas of expertise that an agent or assistant can perform or handle. They are inherent properties of the agents/assistants, defining what tasks they are programmed or trained to do.
+## Definition: 
+Capabilities are specific functions or areas of expertise that an agent or assistant can perform or handle. They are inherent properties of the agents/assistants, defining what tasks they are programmed or trained to do.
 ## Example: For an AI assistant, capabilities might include "Creative Writing", "Math Calculations", "Coding Assistance", or "Image Generation".
 ## Usage: When you're matching a project or user request to an agent or assistant, capabilities are used to ensure that the selected entity can perform the required task.
 
 # Tags
-## Definition: Tags are flexible, user-defined keywords or labels attached to agents, assistants, projects, or other entities. They serve as metadata to categorize, organize, and facilitate search and filtering.
+## Definition: 
+Tags are flexible, user-defined keywords or labels attached to agents, assistants, projects, or other entities. They serve as metadata to categorize, organize, and facilitate search and filtering.
 ## Example: An assistant might be tagged with "Friendly", "Technical", "Beginner-Friendly", or "Finance".
 ## Usage: Tags help users and the system to filter and find agents or assistants based on broader, sometimes subjective criteria that aren't strictly tied to their functional capabilities.
 
@@ -111,13 +113,17 @@ public class Capability
 Integrating associated prompts or directives for each capability enriches our application by providing contextual or situational usage examples. This can enhance the user experience by 
 offering guidance on how to effectively interact with agents or assistants.
 
-## Definition: An associated prompt is a pre-defined instruction or question that effectively utilizes a specific capability of an agent or assistant.
-Example: For a "Coding" capability, an associated prompt might be "Fix syntax errors in this code snippet" or "Translate this Python code to JavaScript".
-Usage: These prompts can be presented to users as suggestions for interaction or used internally by the system to initiate specific tasks with agents or assistants based on user input or project needs.
+## Definition: 
+An associated prompt is a pre-defined instruction or question that effectively utilizes a specific capability of an agent or assistant.
+
+## Example: 
+For a "Coding" capability, an associated prompt might be "Fix syntax errors in this code snippet" or "Translate this Python code to JavaScript".
+## Usage: 
+
+These prompts can be presented to users as suggestions for interaction or used internally by the system to initiate specific tasks with agents or assistants based on user input or project needs.
 
 ## Implementing in the Entity Model
-Considering these distinctions and integrations, our entity models could include relationships where agents or assistants have multiple capabilities, each capability could have multiple associated 
-prompts, and any entity can have multiple tags.
+Considering these distinctions and integrations, our entity models could include relationships where agents or assistants have multiple capabilities, each capability could have multiple associated prompts, and any entity can have multiple tags.
 
 ```
 public class Agent
