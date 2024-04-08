@@ -30,8 +30,10 @@
 		<PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.21.0" />
 		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
 		<PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.17.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
 		<PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.2" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="7.102.2.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -49,8 +51,5 @@
 		<None Update="host.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Domain\Service\Api\" />
 	</ItemGroup>
 </Project>

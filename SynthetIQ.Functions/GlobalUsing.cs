@@ -61,6 +61,7 @@ global using SynthetIQ.Functions.Domain.Service;
 global using SynthetIQ.Functions.Domain.Value.Shared;
 global using SynthetIQ.Functions.Domain.Value.DTO;
 global using SynthetIQ.Functions.Domain.Value.Helpers;
+global using SynthetIQ.DbContext.Models;
 
 //********************************
 // ALIASES (FOR CLARITY)

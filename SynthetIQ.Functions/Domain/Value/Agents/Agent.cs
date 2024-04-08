@@ -7,7 +7,7 @@
         public string Role { get; set; }
         public string Prompt { get; set; }
         public Models.Model Model { get; set; }
-        public string Capabilities { get; set; }
+        public List<Capability> Capabilities { get; set; }
         public string ImageUrl { get; set; }
         public bool Active { get; set; }
         public string CreatedAt { get; set; }

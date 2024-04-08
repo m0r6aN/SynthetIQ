@@ -1,3 +1,4 @@
+using SynthetIQ.Functions.Domain.Service.Api;
 using SynthetIQ.Functions.Domain.Value.DTO;
 
 namespace SynthetIQ.Function.Trigger.Http

@@ -1,4 +1,4 @@
-﻿namespace SynthetIQ.Functions.Domain.Service
+﻿namespace SynthetIQ.Functions.Domain.Service.Api
 {
     [RegisterService(ServiceLifetime.Singleton)]
     public class OpenAIChatService
@@ -27,11 +27,13 @@
 
             try
             {
+                var modelToUse = SelectModelBasedOnContext(conversation);
+
                 var completionResult = _openAiService.ChatCompletion.CreateCompletionAsStream(new ChatCompletionCreateRequest
                 {
                     Messages = conversation.Messages,
                     MaxTokens = 500,
-                    Model = Models.Gpt_3_5_Turbo
+                    Model = modelToUse // Use the dynamically selected model
                 });
 
                 await foreach (var completion in completionResult)
@@ -99,6 +101,13 @@
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        private string SelectModelBasedOnContext(Conversation conversation)
+        {
+            // Placeholder logic to select a model based on the conversation context
+            // This could be replaced with more complex logic involving multiple factors
+            return Models.Gpt_3_5_Turbo; // Default model, adjust as necessary
         }
     }
 }
