@@ -59,8 +59,7 @@ Offer support or guidance within a more narrowly defined scope compared to Agent
   If they have fundamentally different behaviors, capabilities, or relationships within our system, defining separate models might provide clearer structure and flexibility.
 
 # Examples
-In this structure, Assistant inherits from Agent, allowing us to capture shared attributes in Agent while also specifying what makes an Assistant unique. This approach offers flexibility in 
-how we implement and expand our AI functionalities.
+In this structure, Assistant inherits from Agent, allowing us to capture shared attributes in Agent while also specifying what makes an Assistant unique. This approach offers flexibility in how we implement and expand our AI functionalities.
 
 ```
 public class Agent
@@ -100,14 +99,18 @@ public class Capability
 # Capabilities
 ## Definition: 
 Capabilities are specific functions or areas of expertise that an agent or assistant can perform or handle. They are inherent properties of the agents/assistants, defining what tasks they are programmed or trained to do.
-## Example: For an AI assistant, capabilities might include "Creative Writing", "Math Calculations", "Coding Assistance", or "Image Generation".
-## Usage: When you're matching a project or user request to an agent or assistant, capabilities are used to ensure that the selected entity can perform the required task.
+## Example: 
+For an AI assistant, capabilities might include "Creative Writing", "Math Calculations", "Coding Assistance", or "Image Generation".
+## Usage: 
+When you're matching a project or user request to an agent or assistant, capabilities are used to ensure that the selected entity can perform the required task.
 
 # Tags
 ## Definition: 
 Tags are flexible, user-defined keywords or labels attached to agents, assistants, projects, or other entities. They serve as metadata to categorize, organize, and facilitate search and filtering.
-## Example: An assistant might be tagged with "Friendly", "Technical", "Beginner-Friendly", or "Finance".
-## Usage: Tags help users and the system to filter and find agents or assistants based on broader, sometimes subjective criteria that aren't strictly tied to their functional capabilities.
+## Example: 
+An assistant might be tagged with "Friendly", "Technical", "Beginner-Friendly", or "Finance".
+## Usage: 
+Tags help users and the system to filter and find agents or assistants based on broader, sometimes subjective criteria that aren't strictly tied to their functional capabilities.
 
 # Associated Prompts (Directives)
 Integrating associated prompts or directives for each capability enriches our application by providing contextual or situational usage examples. This can enhance the user experience by 
