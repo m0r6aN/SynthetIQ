@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<IsPackable>false</IsPackable>
+		<TargetFramework>net7.0</TargetFramework>
+		<AzureFunctionsVersion>v4</AzureFunctionsVersion>
+		<OutputType>Exe</OutputType>
+		<_FunctionsSkipCleanOutput>true</_FunctionsSkipCleanOutput>
+		<SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Domain\Service\Api\OpenAiApiSvc.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="local.settings.json" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="local.settings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+		<PackageReference Include="Betalgo.OpenAI" Version="7.4.6" />
+		<PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.22.0" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.21.0" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.17.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
+		<PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="7.102.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SynthetIQ.DbContext\SynthetIQ.DbContext.csproj" />
+	  <ProjectReference Include="..\SynthetIQ.Interface\SynthetIQ.Interface.csproj" />
+	  <ProjectReference Include="..\SynthetIQ.Utility\SynthetIQ.Utility.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Z.EntityFramework.Extensions.EFCore">
+	    <HintPath>..\..\..\..\NugetStore\Z.EntityFramework.Extensions.EFCore.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="host.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.chat-box {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.message {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+}
+
+.user {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+.ai {
+  background-color: #eee;
+  align-self: flex-start;
+}
+
+input, button {
+  margin: 10px;
+}
