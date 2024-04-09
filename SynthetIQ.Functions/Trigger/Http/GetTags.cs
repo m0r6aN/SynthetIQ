@@ -1,25 +1,25 @@
-using SynthetIQ.Functions.Domain.Value.Response;
-
 namespace SynthetIQ.Function.Trigger.Http
 {
-    public sealed class GetTagsRequest
+    public sealed class GetTags
     {
         [InjectService]
         public ApiGetSvc ApiGetSvc { get; private set; }
 
-        public GetTagsRequest(ApiGetSvc apiGetSvc)
+        public GetTags(ApiGetSvc apiGetSvc)
         {
             ApiGetSvc = apiGetSvc ?? throw new ArgumentNullException(nameof(apiGetSvc));
         }
 
-        [Function(nameof(GetTagsRequest))]
+        [Function(nameof(GetTags))]
         public async Task<HttpResponseData> RunAsync(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequestData req,
             FunctionContext executionContext,
-            string hints = "",
+            int entityId,
+            EntityType entityType,
+            string search = string.Empty,
             CancellationToken hostCancellationToken = default)
         {
-            var logger = executionContext.GetLogger("OpenAiCompletionFunction");
+            var logger = executionContext.GetLogger(nameof(GetTags));
             logger.LogInformation(FunctionEvents.SynthetIQFunctionRequestStarted);
 
             // Async functions receive 2 cancellation tokens. One from the calling client and one
@@ -38,12 +38,12 @@ namespace SynthetIQ.Function.Trigger.Http
 
             try
             {
-                IGetRequest request = new Domain.Value.Request.GetTagsRequest(hints);
+                IGetRequest request = new TagRequest(entityId, entityType, search);
                 var response = new TagsResponse();
 
-                var chatResponses = await ApiGetSvc.ExecuteAsync(request, response, ct);
+                var tagsResponse = await ApiGetSvc.ExecuteAsync(request, response, ct);
                 var functionResponse = req.CreateResponse(HttpStatusCode.OK);
-                await functionResponse.WriteAsJsonAsync(chatResponses);
+                await functionResponse.WriteAsJsonAsync(tagsResponse);
                 return functionResponse;
             }
             catch (Exception ex)

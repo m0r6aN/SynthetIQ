@@ -1,22 +1,22 @@
 namespace SynthetIQ.Function.Trigger.Http
 {
-    public sealed class OpenAiFunction
+    public sealed class OpenAiChat
     {
         [InjectService]
         public OpenAIChatService ChatService { get; private set; }
 
-        public OpenAiFunction(OpenAIChatService chatService)
+        public OpenAiChat(OpenAIChatService chatService)
         {
             ChatService = chatService ?? throw new ArgumentNullException(nameof(chatService));
         }
 
-        [Function(nameof(OpenAiFunction))]
+        [Function(nameof(OpenAiChat))]
         public async Task<HttpResponseData> RunAsync(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req,
             FunctionContext executionContext,
             CancellationToken hostCancellationToken = default)
         {
-            var logger = executionContext.GetLogger("OpenAiCompletionFunction");
+            var logger = executionContext.GetLogger(nameof(OpenAiChat));
             logger.LogInformation(FunctionEvents.SynthetIQFunctionRequestStarted);
 
             // Async functions receive 2 cancellation tokens. One from the calling client and one

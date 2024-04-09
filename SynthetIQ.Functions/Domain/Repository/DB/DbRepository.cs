@@ -1,5 +1,7 @@
 ﻿using SynthetIQ.DbContext.Context;
 
+using System.Linq.Expressions;
+
 namespace SynthetIQ.Function.Domain.Repository.DB
 {
     /// <summary>
@@ -34,6 +36,25 @@ namespace SynthetIQ.Function.Domain.Repository.DB
         {
             ct.ThrowIfCancellationRequested();
             return await _dbContext.FindAsync(entityType, id, ct);
+        }
+
+        /// <summary>
+        /// Finds entities based on a given search criteria.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="criteria">The search criteria as an expression.</param>
+        /// <param name="ct">The cancellation token.</param>
+        /// <returns>A list of entities matching the search criteria.</returns>
+        /// <example>
+        ///  var invoicesOver100 = await repository.FindEntitiesAsync<Invoice>(invoice => invoice.Total > 100, cancellationToken);
+        ///</example>
+        public async Task<List<TEntity>> FindEntitiesAsync<TEntity>(Expression<Func<TEntity, bool>> criteria, CancellationToken ct) where TEntity : class
+        {
+            ct.ThrowIfCancellationRequested();
+
+            return await _dbContext.Set<TEntity>()
+                                   .Where(criteria)
+                                   .ToListAsync(ct);
         }
 
         /// <summary>
