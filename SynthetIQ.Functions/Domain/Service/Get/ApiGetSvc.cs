@@ -4,12 +4,12 @@
     public sealed class ApiGetSvc
     {
         [InjectService]
-        public ApiRepository ApiRepo { get; private set; }
+        public IApiRepository ApiRepo { get; private set; }
 
         [InjectService]
         public HttpHelpers HttpHelpers { get; private set; }
 
-        public ApiGetSvc(ApiRepository apiRepository, HttpHelpers httpHelpers)
+        public ApiGetSvc(IApiRepository apiRepository, HttpHelpers httpHelpers)
         {
             ApiRepo = apiRepository ?? throw new ArgumentNullException(nameof(apiRepository));
             HttpHelpers = httpHelpers ?? throw new ArgumentNullException(nameof(httpHelpers));

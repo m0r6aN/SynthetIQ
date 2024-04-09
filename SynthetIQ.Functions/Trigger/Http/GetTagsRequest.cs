@@ -1,19 +1,22 @@
+using SynthetIQ.Functions.Domain.Value.Response;
+
 namespace SynthetIQ.Function.Trigger.Http
 {
-    public sealed class OpenAiFunction
+    public sealed class GetTagsRequest
     {
         [InjectService]
-        public OpenAIChatService ChatService { get; private set; }
+        public ApiGetSvc ApiGetSvc { get; private set; }
 
-        public OpenAiFunction(OpenAIChatService chatService)
+        public GetTagsRequest(ApiGetSvc apiGetSvc)
         {
-            ChatService = chatService ?? throw new ArgumentNullException(nameof(chatService));
+            ApiGetSvc = apiGetSvc ?? throw new ArgumentNullException(nameof(apiGetSvc));
         }
 
-        [Function(nameof(OpenAiFunction))]
+        [Function(nameof(GetTagsRequest))]
         public async Task<HttpResponseData> RunAsync(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequestData req,
             FunctionContext executionContext,
+            string hints = "",
             CancellationToken hostCancellationToken = default)
         {
             var logger = executionContext.GetLogger("OpenAiCompletionFunction");
@@ -22,7 +25,10 @@ namespace SynthetIQ.Function.Trigger.Http
             // Async functions receive 2 cancellation tokens. One from the calling client and one
             // from the host (APIM). Get a linked ct source that will throw an
             // OperationCanceledException if it receives a cancellation request from either.
-            var lts = CancellationTokenSource.CreateLinkedTokenSource(hostCancellationToken, executionContext.CancellationToken);
+            var lts = CancellationTokenSource.CreateLinkedTokenSource(
+                hostCancellationToken,
+                executionContext.CancellationToken);
+
             int timeoutMS = 20000;
             lts.CancelAfter(timeoutMS);
             CancellationToken ct = lts.Token;
@@ -32,26 +38,10 @@ namespace SynthetIQ.Function.Trigger.Http
 
             try
             {
-                // Parse the request body
-                var requestBody = await new StreamReader(req.Body).ReadToEndAsync(ct);
-                var requestData = JsonConvert.DeserializeObject<ChatRequestDTO>(requestBody);
+                IGetRequest request = new Domain.Value.Request.GetTagsRequest(hints);
+                var response = new TagsResponse();
 
-                if (string.IsNullOrEmpty(requestData?.ConversationId))
-                {
-                    var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
-                    await badRequest.WriteStringAsync("No ConversationId!");
-                    return badRequest;
-                }
-
-                if (string.IsNullOrEmpty(requestData?.NewMessage))
-                {
-                    var badRequest = req.CreateResponse(HttpStatusCode.BadRequest);
-                    await badRequest.WriteStringAsync("No prompt!");
-                    return badRequest;
-                }
-
-                // Pass the conversationId to ChatWithOpenAIAsync
-                var chatResponses = await ChatService.ChatWithOpenAIAsync(requestData, ct);
+                var chatResponses = await ApiGetSvc.ExecuteAsync(request, response, ct);
                 var functionResponse = req.CreateResponse(HttpStatusCode.OK);
                 await functionResponse.WriteAsJsonAsync(chatResponses);
                 return functionResponse;

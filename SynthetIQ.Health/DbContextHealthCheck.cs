@@ -8,11 +8,11 @@ namespace MF.DomainName.Health.Database
     /// <typeparam name="TContext"> </typeparam>
     public sealed class DbContextHealthCheck<TContext> where TContext : DbContext, IHealthCheck
     {
-        private readonly SynthetIQDbContext _synthetIQDbContext;
+        private readonly SynthetIQContext _synthetIQDbContext;
 
         public DbContextHealthCheck(DbContext dbContext)
         {
-            _synthetIQDbContext = (SynthetIQDbContext)dbContext;
+            _synthetIQDbContext = (SynthetIQContext)dbContext;
         }
 
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken token = default)

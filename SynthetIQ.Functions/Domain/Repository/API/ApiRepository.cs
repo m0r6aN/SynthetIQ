@@ -5,7 +5,7 @@
     /// </summary>
 
     [RegisterService]
-    public sealed class OpenAiRepository : IApiRepository
+    public sealed class ApiRepository : IApiRepository
     {
         private readonly HttpClient _httpClient;
 
@@ -14,7 +14,7 @@
         /// </summary>
         public Uri ActionUrl { get; set; }
 
-        public OpenAiRepository(IHttpClientFactory httpClientFactory) =>
+        public ApiRepository(IHttpClientFactory httpClientFactory) =>
             _httpClient = httpClientFactory.CreateClient("OpenAI")
                 ?? throw new ArgumentNullException(nameof(httpClientFactory));
 
@@ -52,10 +52,11 @@
             return await response.Content.ReadAsStringAsync(ct) ?? string.Empty;
         }
 
-        public async Task<string> PatchAsync(CancellationToken ct)
+        public async Task<string> PatchAsync(object content, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
             using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Patch, ActionUrl);
             using HttpResponseMessage response = await _httpClient.SendAsync(request, ct);
 
@@ -64,10 +65,11 @@
             return await response.Content.ReadAsStringAsync() ?? string.Empty;
         }
 
-        public async Task<string> PutAsync(CancellationToken ct)
+        public async Task<string> PutAsync(object content, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
             using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, ActionUrl);
             using HttpResponseMessage response = await _httpClient.SendAsync(request, ct);
 

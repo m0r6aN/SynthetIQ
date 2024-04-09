@@ -1,5 +1,4 @@
-﻿using SynthetIQ.Context;
-using SynthetIQ.Utility.Logging;
+﻿using SynthetIQ.DbContext.Context;
 
 namespace SynthetIQ.Function.Domain.Repository.DB
 {
@@ -9,12 +8,12 @@ namespace SynthetIQ.Function.Domain.Repository.DB
     [RegisterService]
     public sealed class DbRepository
     {
-        private readonly SynthetIQDbContext _dbContext;
+        private readonly SynthetIQContext _dbContext;
 
         [InjectService]
         public AppInsightsLogger Logger { get; private set; }
 
-        public DbRepository(IDbContextFactory<SynthetIQDbContext> dbContextFactory, AppInsightsLogger logger)
+        public DbRepository(IDbContextFactory<SynthetIQContext> dbContextFactory, AppInsightsLogger logger)
         {
             _dbContext = dbContextFactory.CreateDbContext() ??
                 throw new ArgumentNullException(nameof(dbContextFactory));

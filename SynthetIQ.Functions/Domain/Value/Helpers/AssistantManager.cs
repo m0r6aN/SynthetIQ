@@ -1,37 +1,25 @@
-﻿using System.Net.Http.Headers;
+﻿using SynthetIQ.DbContext.Models;
+using SynthetIQ.Function.Domain.Repository.DB;
 
 namespace SynthetIQ.Functions.Domain.Value.Helpers
 {
     public class AssistantManager
     {
-        private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "https://api.openai.com/v1/";
-        private readonly string _apiKey;
+        [InjectService]
+        public DbRepository DbRepository { get; private set; }
 
-        public AssistantManager(string apiKey)
+        public AssistantManager(DbRepository dbRepository)
         {
-            _apiKey = apiKey;
-            _httpClient = new HttpClient
-            {
-                DefaultRequestHeaders =
-            {
-                Authorization = new AuthenticationHeaderValue("Bearer", _apiKey)
-            }
-            };
+            DbRepository = dbRepository ?? throw new ArgumentNullException(nameof(dbRepository));
         }
 
-        public async Task<string> CreateAssistantAsync(string name, string model, Dictionary<string, string> metadata = null)
+        public async Task<string> CreateAssistantAsync(string name, string model, Dictionary<string, string> metadata = null, CancellationToken ct)
         {
-            var payload = new
-            {
-                name = name,
-                model = model,
-                metadata = metadata
-            };
+            ct.ThrowIfCancellationRequested();
 
-            var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync($"{_baseUrl}assistants", content);
-            response.EnsureSuccessStatusCode();
+            Assistant assistant = new Assistant { Name = name, Model = model, Metadata = metadata };
+
+            var result = await DbRepository.UpsertEntityAsync(assistant, ct);
 
             var responseContent = await response.Content.ReadAsStringAsync();
             dynamic result = JsonConvert.DeserializeObject(responseContent);
@@ -40,6 +28,8 @@ namespace SynthetIQ.Functions.Domain.Value.Helpers
 
         public async Task UpdateAssistantAsync(string assistantId, string name = null, string model = null, Dictionary<string, string> metadata = null)
         {
+            var assistant =
+
             var payload = new
             {
                 name = name,

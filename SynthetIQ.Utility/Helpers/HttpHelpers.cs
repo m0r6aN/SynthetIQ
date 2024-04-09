@@ -1,13 +1,17 @@
-﻿// *********************************************************************** Assembly :
-// MF.Libraries.Core Author : clint.morgan Created : 04-01-2022
+﻿// *************** Assembly :**************************************** MF.Libraries.Core Author :
+// clint.morgan Created : 04-01-2022
 //
-// Last Modified By : clint.morgan Last Modified On : 05-06-2022 ***********************************************************************
+// Last Modified By : clint.morgan Last Modified On : 05-06-2022
 // <copyright file="HttpHelpers.cs" company="OTR Solutions, LLC">
 //     OTR Solutions, LLC 2022
 // </copyright>
 // <summary>
 // </summary>
-// ***********************************************************************
+// *******************************************************************
+using Newtonsoft.Json;
+
+using System.Net.Http.Headers;
+
 namespace SynthetIQ.Utility.Helpers
 {
     /// <summary>

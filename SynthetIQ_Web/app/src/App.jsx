@@ -32,9 +32,10 @@ function App() {
 
     const controller = new AbortController();
     const signal = controller.signal;
-
+    
     try {
       // Call the Azure Function
+      // Define additional endpoints if needed
       const response = await fetch("http://localhost:7234/api/OpenAiFunction", {
         method: "POST",
         headers: {
