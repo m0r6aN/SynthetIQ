@@ -41,7 +41,7 @@
                 var buffer = Encoding.UTF8.GetBytes(httpResponse.StatusCode.ToString());
                 await httpResponse.Body.WriteAsync(buffer, 0, buffer.Length);
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 // Handle the exception
                 HandleException(ex, context.GetHttpResponseData());
@@ -49,7 +49,7 @@
             }
         }
 
-        private void HandleException(Exception ex, HttpResponseData httpResponse)
+        private void HandleException(System.Exception ex, HttpResponseData httpResponse)
         {
             string errorMessage;
             httpResponse.StatusCode = HttpStatusCode.InternalServerError;

@@ -1,27 +1,22 @@
-using SynthetIQ.Function.Domain.Value.Request;
 using SynthetIQ.Function.Services.Get.API;
-using SynthetIQ.Functions.Domain.Value.Enum;
-using SynthetIQ.Functions.Domain.Value.Response;
 
 namespace SynthetIQ.Function.Trigger.Http
 {
-    public sealed class GetTags
+    public sealed class GetTopTokens
     {
         [InjectService]
         public ApiGetSvc ApiGetSvc { get; private set; }
 
-        public GetTags(ApiGetSvc apiGetSvc)
+        public GetTopTokens(ApiGetSvc apiGetSvc)
         {
             ApiGetSvc = apiGetSvc ?? throw new ArgumentNullException(nameof(apiGetSvc));
         }
 
-        [Function(nameof(GetTags))]
+        [Function(nameof(GetTopTokens))]
         public async Task<HttpResponseData> RunAsync(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequestData req,
             FunctionContext executionContext,
-            int entityId,
-            EntityType entityType,
-            string search = "",
+            int topX,
             CancellationToken hostCancellationToken = default)
         {
             var logger = executionContext.GetLogger(nameof(GetTags));
@@ -43,16 +38,14 @@ namespace SynthetIQ.Function.Trigger.Http
 
             try
             {
-                List<string> searches = search.Split(',').ToList();
-                var request = new TagRequest(entityId, entityType, searches);
-                var response = new TagsResponse();
-
-                //var tagsResponse = await Tagse.ExecuteAsync(request, response, ct);
-                var functionResponse = req.CreateResponse(HttpStatusCode.OK);
-                await functionResponse.WriteAsJsonAsync(""); //tagsResponse
+                // add mexc client call here
+                var cnt = topX;
+                // var tagsResponse = await DbGetSvc.ExecuteAsync(request, response, ct); var
+                // functionResponse = req.CreateResponse(HttpStatusCode.OK);
+                await functionResponse.WriteAsJsonAsync(tagsResponse);
                 return functionResponse;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex, FunctionEvents.SynthetIQFunctionRequestFailed);
                 return req.CreateResponse(HttpStatusCode.InternalServerError);

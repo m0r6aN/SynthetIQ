@@ -2,6 +2,6 @@
 {
     public interface IGetService
     {
-        public Task<IFunctionResponse> ExecuteAsync(IGetRequest request, CancellationToken token);
+        public Task<IFunctionResponse> ExecuteAsync(IApiGetRequest request, CancellationToken token);
     }
 }

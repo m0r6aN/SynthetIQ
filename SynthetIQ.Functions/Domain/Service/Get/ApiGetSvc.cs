@@ -17,7 +17,7 @@
             HttpHelpers.BaseUrl = Settings.OpenAIBaseUrl;
         }
 
-        public async Task<string> ExecuteAsync(IGetRequest request, IFunctionResponse response, CancellationToken ct)
+        public async Task<string> ExecuteAsync(IApiGetRequest request, IFunctionResponse response, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 

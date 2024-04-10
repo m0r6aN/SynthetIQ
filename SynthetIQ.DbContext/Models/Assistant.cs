@@ -7,12 +7,19 @@ namespace SynthetIQ.DbContext.Models;
 
 public partial class Assistant
 {
-    public int Id { get; set; }
+    public int AssistantId { get; set; }
 
     public string Name { get; set; }
 
     public string Description { get; set; }
 
+    public int ModelId { get; set; }
+
+    public DateTime CreatedDt { get; set; }
+
+    public DateTime? ModifiedDt { get; set; }
+
+    public virtual ICollection<Llmconfiguration> Llmconfigurations { get; set; } = new List<Llmconfiguration>();
 
     public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
 

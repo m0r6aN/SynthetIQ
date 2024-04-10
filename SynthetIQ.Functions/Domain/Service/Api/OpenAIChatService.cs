@@ -27,7 +27,7 @@
 
             try
             {
-                var modelToUse = SelectModelBasedOnContext(conversation);
+                var modelToUse = SelectModelBasedOnContext();//conversation
 
                 var completionResult = _openAiService.ChatCompletion.CreateCompletionAsStream(new ChatCompletionCreateRequest
                 {
@@ -103,10 +103,10 @@
             }
         }
 
-        private string SelectModelBasedOnContext(Conversation conversation)
+        private string SelectModelBasedOnContext() //Conversation conversation
         {
-            // Placeholder logic to select a model based on the conversation context
-            // This could be replaced with more complex logic involving multiple factors
+            // Placeholder logic to select a model based on the conversation context This could be
+            // replaced with more complex logic involving multiple factors
             return Models.Gpt_3_5_Turbo; // Default model, adjust as necessary
         }
     }

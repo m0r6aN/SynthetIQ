@@ -1,13 +1,97 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Define color variables */
+:root {
+  --dark-blue: #003366;   /* Dark Blue - Primary */
+  --bright-blue: #007FFF; /* Bright Blue - Accent */
+  --mid-tone-gray: #4D4D4D; /* Mid-tone Gray */
+  --light-gray: #CCCCCC;  /* Light Gray */
+  --white: #FFFFFF;       /* White */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Apply colors to generic elements */
+body {
+  background-color: var(--light-gray);
+  color: var(--dark-blue);
+  font-family: 'Arial', sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dark-blue);
+}
+
+a {
+  color: var(--bright-blue);
+}
+
+a:hover {
+  color: var(--dark-blue);
+}
+
+/* Button styling */
+button {
+  background-color: var(--bright-blue);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--dark-blue);
+}
+
+/* Inputs and Forms */
+input, textarea, select {
+  border: 1px solid var(--mid-tone-gray);
+  background-color: var(--white);
+}
+
+/* Use mid-tone and light gray for borders and backgrounds */
+hr {
+  border-color: var(--mid-tone-gray);
+}
+
+.header, .footer {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+
+/* Utility classes */
+.text-primary {
+  color: var(--dark-blue);
+}
+
+.bg-accent {
+  background-color: var(--bright-blue);
+}
+
+.text-accent {
+  color: var(--bright-blue);
+}
+
+.bg-light {
+  background-color: var(--light-gray);
+}
+
+.text-light {
+  color: var(--light-gray);
+}
+
+/* Layout and Spacing */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+}
+
+/* Add any other specific UI elements' styles as needed */

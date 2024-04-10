@@ -1,6 +1,4 @@
-﻿using SynthetIQ.Functions.Domain.Value.Shared;
-
-namespace SynthetIQ.Functions.Domain.Value.Response
+﻿namespace SynthetIQ.Functions.Domain.Value.Response
 {
     public sealed class OpenAiChatCompletion : IFunctionResponse
     {

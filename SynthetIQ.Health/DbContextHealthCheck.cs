@@ -1,21 +1,21 @@
-﻿using SynthetIQ.Context;
+﻿using SynthetIQ.DbContext.Context;
 
-namespace MF.DomainName.Health.Database
+namespace SynthetIQ.Health.Database
 {
     /// <summary>
     /// Checks for DbContext connectivity and degraded response times
     /// </summary>
     /// <typeparam name="TContext"> </typeparam>
-    public sealed class DbContextHealthCheck<TContext> where TContext : DbContext, IHealthCheck
+    public sealed class DbContextHealthCheck<TContext> where TContext : Microsoft.EntityFrameworkCore.DbContext, IHealthCheck
     {
         private readonly SynthetIQContext _synthetIQDbContext;
 
-        public DbContextHealthCheck(DbContext dbContext)
+        public DbContextHealthCheck(Microsoft.EntityFrameworkCore.DbContext dbContext)
         {
             _synthetIQDbContext = (SynthetIQContext)dbContext;
         }
 
-        public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken token = default)
+        public async Task<HealthCheckResult> CheckHealthAsync(CancellationToken token = default)
         {
             token.ThrowIfCancellationRequested();
 

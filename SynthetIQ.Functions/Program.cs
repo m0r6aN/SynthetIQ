@@ -1,4 +1,5 @@
-using Azure.Identity;
+using Mexc.Net.Interfaces.Clients;
+using CryptoExchange.Net.Authentication;
 
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,6 +45,16 @@ namespace SynthetIQ.Function
                        {
                            clientBuilder.AddBlobServiceClient(connectionString: "UseDevelopmentStorage=true");
                        });
+
+                       // Add MexC
+                       services.AddMexc(restOptions =>
+                        {
+                            restOptions.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
+                            restOptions.RequestTimeout = TimeSpan.FromSeconds(5);
+                        }, socketOptions =>
+                        {
+                            socketOptions.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
+                        });
 
                        // Register all services in the current assembly decorated with the
                        // RegisterService attribute Use TryAdd to avoid overwriting or duplicating

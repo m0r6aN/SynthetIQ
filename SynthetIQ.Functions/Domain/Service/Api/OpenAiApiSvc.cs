@@ -1,9 +1,6 @@
 ﻿using Azure.Core;
 using Azure;
 
-using OpenAI;
-using Azure.AI.OpenAI;
-
 namespace SynthetIQ.Function.Services.Get.API
 {
     [RegisterService]
@@ -28,7 +25,7 @@ namespace SynthetIQ.Function.Services.Get.API
 
             // Initialize chat completion request options with your specific requirements
             var chatCompletionsOptions = new ChatCompletionsOptions("Your Deployment Name",
-                // Assuming 'prompt' and 'userMessages' are structured to fit your specific use case
+               // Assuming 'prompt' and 'userMessages' are structured to fit your specific use case
                Messages = new List<ChatRequestMessage>
                 {
                     new ChatRequestSystemMessage("System message if any"),
@@ -43,13 +40,11 @@ namespace SynthetIQ.Function.Services.Get.API
                 chatCompletionsOptions.Messages.Add(new ChatRequestUserMessage(message));
             }
 
-            // Execute the chat completion request
-            var response = await client.GetChatCompletionsAsync(chatCompletionsOptions, ct);
+    // Execute the chat completion request
+    var response = await client.GetChatCompletionsAsync(chatCompletionsOptions, ct);
 
             return response.Value; // Make sure to handle this response according to your application's needs
         }
-
-
 
         //public async IAsyncEnumerable<string> ExecuteStreamAsync(string prompt, [EnumeratorCancellation] CancellationToken ct)
         //{

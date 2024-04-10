@@ -14,7 +14,11 @@ namespace SynthetIQ.DbContext.Models.Configurations
             entity.HasKey(e => e.AssistantId).HasName("PK__Assistan__3756F7504B6F2B21");
 
             entity.Property(e => e.AssistantId).HasColumnName("AssistantID");
+            entity.Property(e => e.CreatedDt)
+            .HasDefaultValueSql("(getdate())")
+            .HasColumnType("datetime");
             entity.Property(e => e.Description).IsRequired();
+            entity.Property(e => e.ModifiedDt).HasColumnType("datetime");
             entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(255);

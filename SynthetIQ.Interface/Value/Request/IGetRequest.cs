@@ -1,6 +1,6 @@
 ﻿namespace SynthetIQ.Interface.Value.Request
 {
-    public interface IGetRequest
+    public interface IApiGetRequest
     {
         Task<Uri> ToUri();
 

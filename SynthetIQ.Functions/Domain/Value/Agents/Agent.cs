@@ -1,4 +1,6 @@
-﻿namespace SynthetIQ.Functions.Domain.Value.Agents
+﻿using SynthetIQ.DbContext.Models;
+
+namespace SynthetIQ.Functions.Domain.Value.Agents
 {
     public class Agent
     {

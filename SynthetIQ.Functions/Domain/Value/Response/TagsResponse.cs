@@ -1,4 +1,6 @@
-﻿namespace SynthetIQ.Functions.Domain.Value.Response
+﻿using SynthetIQ.Function.Domain.Value.Response;
+
+namespace SynthetIQ.Functions.Domain.Value.Response
 {
     public sealed class TagsResponse : ResponseBase, IFunctionResponse
     {

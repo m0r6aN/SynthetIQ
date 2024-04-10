@@ -1,8 +1,12 @@
-﻿namespace SynthetIQ.Function.Domain.Value.Request
+﻿using SynthetIQ.Functions.Domain.Value.Enum;
+
+using System.Linq.Expressions;
+
+namespace SynthetIQ.Function.Domain.Value.Request
 {
     public sealed class TagRequest
     {
-        public List<string> Hints { get; set; }
+        public List<string> Searches { get; set; }
         public int AgentId { get; set; }
         public int AssistantId { get; set; }
         public int ChatId { get; set; }
@@ -10,8 +14,14 @@
         public int LLMID { get; set; }
         public int UserId { get; set; }
 
-        public TagRequest(int EntityId, EntityType entityType, string search)
+        public TagRequest()
         {
+        }
+
+        public TagRequest(int EntityId, EntityType entityType, List<string> searches)
+        {
+            Searches = searches;
+
             switch (entityType)
             {
                 case EntityType.Agent:

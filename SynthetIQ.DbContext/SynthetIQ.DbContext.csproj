@@ -7,14 +7,19 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Context\Configurations\**" />
-    <EmbeddedResource Remove="Context\Configurations\**" />
-    <None Remove="Context\Configurations\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.17" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.17" />
+		<PackageReference Include="System.Linq" Version="4.3.0" />
+		<PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+		<PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
-  </ItemGroup>
+	<ItemGroup>
+	  <None Update="Monikers.imagemanifest">
+	    <IncludeInVSIX>true</IncludeInVSIX>
+	  </None>
+	</ItemGroup>
 
 </Project>
