@@ -4,7 +4,6 @@
     {
         public Assistant(string agentName, string prompt)
         {
-            Id = Guid.NewGuid();
             Name = agentName;
             Role = "Assistant";
             Prompt = prompt;

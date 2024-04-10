@@ -15,39 +15,35 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Assistants]",
+         "Name": "[dbo].[Assistant]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[AssistantTags]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Exceptions]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[LLMConfigurations]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[ProjectAssistants]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Projects]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[ProjectTags]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Tags]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Users]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[User]",
          "ObjectType": 0
       }
    ],
@@ -56,7 +52,6 @@
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDateOnlyTimeOnly": false,
-   "UseDbContextSplitting": true,
    "UseDecimalDataAnnotationForSprocResult": true,
    "UseFluentApiOnly": true,
    "UseHandleBars": false,

@@ -20,7 +20,6 @@ global using System.Text.Json;
 global using System.Text;
 global using System.Threading.Tasks;
 global using System.Threading;
-global using System.Linq.Expressions;
 
 //************
 // 3RD PARTY
@@ -50,23 +49,19 @@ global using Quickwire.Attributes;
 //********************************
 // INTERNAL (THIS ASSEMBLY)
 //********************************
+global using SynthetIQ.Context;
 global using SynthetIQ.Domain.Value.Constant;
 global using SynthetIQ.Function.Domain.Repository.API;
-global using SynthetIQ.Functions.Domain.Service;
-global using SynthetIQ.Functions.Domain.Value.DTO;
-global using SynthetIQ.Functions.Domain.Value.Helpers;
-global using SynthetIQ.Functions.Domain.Value.Shared;
 global using SynthetIQ.Interface.Repository.API;
 global using SynthetIQ.Interface.Value.Request;
 global using SynthetIQ.Interface.Value.Response;
 global using SynthetIQ.Utility.Exception;
 global using SynthetIQ.Utility.Helpers;
-global using SynthetIQ.Function.Domain.Value.Request;
-global using SynthetIQ.Function.Services.Get.API;
-global using SynthetIQ.Function.Domain.Value.Response;
-global using SynthetIQ.Utility.Logging;
-global using SynthetIQ.Functions.Domain.Value.Response;
-global using SynthetIQ.Functions.Domain.Value.Enum;
+global using SynthetIQ.Functions.Domain.Service;
+global using SynthetIQ.Functions.Domain.Value.Shared;
+global using SynthetIQ.Functions.Domain.Value.DTO;
+global using SynthetIQ.Functions.Domain.Value.Helpers;
+global using SynthetIQ.DbContext.Models;
 
 //********************************
 // ALIASES (FOR CLARITY)

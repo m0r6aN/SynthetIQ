@@ -1,15 +1,14 @@
-﻿// *************** Assembly :**************************************** MF.Libraries.Core Author :
-// clint.morgan Created : 04-01-2022
+﻿// *********************************************************************** Assembly :
+// MF.Libraries.Core Author : clint.morgan Created : 04-01-2022
 //
-// Last Modified By : clint.morgan Last Modified On : 05-06-2022
+// Last Modified By : clint.morgan Last Modified On : 05-06-2022 ***********************************************************************
 // <copyright file="HttpHelpers.cs" company="OTR Solutions, LLC">
 //     OTR Solutions, LLC 2022
 // </copyright>
 // <summary>
 // </summary>
-// *******************************************************************
+// ***********************************************************************
 using Newtonsoft.Json;
-
 using System.Net.Http.Headers;
 
 namespace SynthetIQ.Utility.Helpers
@@ -39,7 +38,7 @@ namespace SynthetIQ.Utility.Helpers
         /// <summary>
         /// The cancellation token
         /// </summary>
-        protected readonly CancellationToken CancellationToken = new();
+        public readonly CancellationToken CancellationToken = new();
 
         /// <summary>
         /// Required to use all endpoints except for DialPad related and public
@@ -55,10 +54,6 @@ namespace SynthetIQ.Utility.Helpers
         /// Base Url for Azure Function endpoints
         /// </summary>
         public string BaseUrl { get; set; }
-
-        public HttpHelpers()
-        {
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpHelpers"/> class.
@@ -168,7 +163,7 @@ namespace SynthetIQ.Utility.Helpers
         /// </summary>
         /// <param name="keyValuePairs"> The key value pairs. </param>
         /// <returns> System.String. </returns>
-        protected string BuildQueryString(IDictionary<string, string> keyValuePairs)
+        public string BuildQueryString(IDictionary<string, string> keyValuePairs)
         {
             StringBuilder sb = new StringBuilder("");
             int i = 0;

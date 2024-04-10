@@ -101,9 +101,9 @@
             return new SynthetIQ_ChatMessage(StaticValues.ChatMessageRoles.System, content, modelIdentifier, name);
         }
 
-        public static SynthetIQ_ChatMessage FromUser(IList<MessageContent> contents, string modelIdentifier,)
+        public static SynthetIQ_ChatMessage FromUser(IList<MessageContent> contents, string modelIdentifier)
         {
-            return new SynthetIQ_ChatMessage(StaticValues.ChatMessageRoles.User, contents, modelIdentifier,);
+            return new SynthetIQ_ChatMessage(StaticValues.ChatMessageRoles.User, contents, modelIdentifier);
         }
     }
 }

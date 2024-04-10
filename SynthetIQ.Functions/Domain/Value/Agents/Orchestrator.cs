@@ -1,4 +1,6 @@
-﻿namespace SynthetIQ.Functions.Domain.Value.Agents
+﻿using SynthetIQ.Functions.Domain.Value.Assistants;
+
+namespace SynthetIQ.Functions.Domain.Value.Agents
 {
     public sealed class Orchestrator : Agent
     {
@@ -16,13 +18,13 @@
 
         public Assistant GetOptimalAssistant(string context)
         {
-            // Placeholder logic to query your internal registry and select the best assistant This
-            // could be based on matching the context with the assistants' capabilities
+            // Attempt to match one or more assistants by matching the
+            // projects context with the their capabilities
             var assistantMetadata = QueryRegistry(context);
-            return new Assistant(assistantMetadata.Id, assistantMetadata.Capabilities);
+            return new Assistant(assistantMetadata.Name, List<Capability> Capabilities);
         }
 
-        private object QueryRegistry(string context)
+        private AssistantMetaData QueryRegistry(string context)
         {
             throw new NotImplementedException();
         }
@@ -32,35 +34,6 @@
             // Placeholder logic to select a model based on the conversation context This could be
             // replaced with more complex logic involving multiple factors
             return Models.Gpt_3_5_Turbo; // Default model, adjust as necessary
-        }
-    }
-
-    public sealed class Assistant : Agent
-    {
-        public Assistant(string agentName, string prompt, Models.Model model)
-        {
-            Id = Guid.NewGuid();
-            Name = agentName;
-            Role = "Assistant";
-            Prompt = prompt;
-            Model = model
-            ImageUrl = "https://synthetiq.blob.core.windows.net/agents/assistant.png";
-            Active = true;
-            CreatedAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
-            UpdatedAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
-        }
-
-        public Assistant(Guid id, string capabilities)
-        {
-            Id = id;
-            Name = "Assistant";
-            Role = "Assistant";
-            Prompt = "How can I help you today?";
-            ImageUrl = "https://synthetiq.blob.core.windows.net/agents/assistant.png";
-            Active = true;
-            CreatedAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
-            UpdatedAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
-            Capabilities = capabilities;
         }
     }
 }
